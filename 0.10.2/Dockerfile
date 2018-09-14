@@ -13,6 +13,8 @@ RUN apt-get update && \
 COPY ./etc/fail2ban.conf /etc/fail2ban/fail2ban.conf
 RUN chmod -v 644 /etc/fail2ban/fail2ban.conf
 
+RUN mkdir -v /var/run/fail2ban
+
 VOLUME ["/var/lib/fail2ban"]
 
 CMD ["fail2ban-server", "-f"]
