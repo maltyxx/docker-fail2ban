@@ -1,6 +1,5 @@
-FROM ubuntu:bionic
+FROM ubuntu:18.04
 
-MAINTAINER Romain GALLIEN <r.gallien@santiane.fr>
 MAINTAINER Yoann VANITOU <yvanitou@gmail.com>
 
 ENV FAIL2BAN_VERSION 0.10.2
@@ -10,11 +9,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ./etc/fail2ban.conf /etc/fail2ban/fail2ban.conf
-RUN chmod -v 644 /etc/fail2ban/fail2ban.conf
+COPY ./config/* /etc/fail2ban/
+RUN chmod -v 644 /etc/fail2ban/fail2ban.local /etc/fail2ban/jail.local
 
 RUN mkdir -v /var/run/fail2ban
 
-VOLUME ["/var/lib/fail2ban"]
+VOLUME ["/var/lib/fail2ban", "/etc/fail2ban"]
 
 CMD ["fail2ban-server", "-f"]
