@@ -73,7 +73,7 @@ This implies that [sshd](https://github.com/fail2ban/fail2ban/blob/0.10/config/j
 docker exec -t <CONTAINER> fail2ban-client set <JAIL> banip <IP>
 ```
 
-### Custom actions and filters
+### Custom actions, filters and jails
 
 Custom actions, filters and jails can be added in `/etc/fail2ban/action.d`, `/etc/fail2ban/filter.d` and `/etc/fail2ban/jail.d`.
 
