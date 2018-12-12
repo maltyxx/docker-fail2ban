@@ -75,6 +75,6 @@ docker exec -t <CONTAINER> fail2ban-client set <JAIL> banip <IP>
 
 ### Custom actions and filters
 
-Custom actions, filters and jails can be added in `/etc/fail2ban/action.d`, `/etc/fail2ban/filter.d` and `/etc/fail2ban/jail.d`. If you add an action/filter that already exists, it will be overriden.
+Custom actions, filters and jails can be added in `/etc/fail2ban/action.d`, `/etc/fail2ban/filter.d` and `/etc/fail2ban/jail.d`.
 
 > :warning: Container has to be restarted to propagate changes
