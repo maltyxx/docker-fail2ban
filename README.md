@@ -44,6 +44,22 @@ docker run -d --name fail2ban --restart always \
   --cap-add NET_RAW \
   -v config:/etc/fail2ban \
   -v data:/var/lib/fail2ban \
+  -v /var/log:/var/log:ro \
+  maltyxx/fail2ban:latest
+```
+
+### Command line (Enabling IPv6)
+
+Loaded from a kernel module :
+
+```bash
+docker run -d --name fail2ban --restart always \
+  --network host \
+  --cap-add NET_ADMIN \
+  --cap-add NET_RAW \
+  --cap-add SYS_MODULE \
+  -v config:/etc/fail2ban \
+  -v data:/var/lib/fail2ban \
   -v /lib/modules:/lib/modules:/lib/modules:/lib/modules:ro \
   -v /var/log:/var/log:ro \
   maltyxx/fail2ban:latest
