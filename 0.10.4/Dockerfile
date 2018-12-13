@@ -11,8 +11,8 @@ RUN apk --update --no-cache add \
   && unzip ${FAIL2BAN_VERSION}.zip \
   && cd fail2ban-${FAIL2BAN_VERSION} \
   && python setup.py install \
-  && mkdir /etc/old
-  && cp -rp /etc/fail2ban /etc/old/
+  && mkdir /etc/old \
+  && cp -rp /etc/fail2ban /etc/old/ \
   && rm -rf /var/cache/apk/* /tmp/*
 
 COPY entrypoint.sh /entrypoint.sh
