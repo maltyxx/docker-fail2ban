@@ -25,4 +25,4 @@ ENTRYPOINT [ "/entrypoint.sh" ]
 
 CMD ["fail2ban-server", "-f", "-x", "start"]
 
-HEALTHCHECK --interval=10s --timeout=5s CMD fail2ban-client ping || exit 1
+HEALTHCHECK --interval=30s --timeout=5s CMD fail2ban-client ping || exit 1
