@@ -19,6 +19,8 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod a+x /entrypoint.sh
 
+RUN mkdir -v /entrypoint.d
+
 VOLUME ["/etc/fail2ban", "/var/lib/fail2ban"]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
