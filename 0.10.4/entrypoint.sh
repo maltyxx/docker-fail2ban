@@ -4,6 +4,8 @@ TZ=${TZ:-UTC}
 
 F2B_LOG_LEVEL=${F2B_LOG_LEVEL:-INFO}
 F2B_DB_PURGE_AGE=${F2B_DB_PURGE_AGE:-1d}
+F2B_IGNORE_SELF=${F2B_IGNORE_SELF:-true}
+F2B_IGNORE_IP=${F2B_IGNORE_IP:-127.0.0.1/8 ::1}
 F2B_BAN_TIME=${F2B_BAN_TIME:-10m}
 F2B_FIND_TIME=${F2B_FIND_TIME:-10m}
 F2B_MAX_RETRY=${F2B_MAX_RETRY:-5}
@@ -56,6 +58,8 @@ EOL
 
 cat > /etc/fail2ban/jail.local <<EOL
 [DEFAULT]
+ignoreself = ${F2B_IGNORE_SELF}
+ignoreip = ${F2B_IGNORE_IP}
 bantime = ${F2B_BAN_TIME}
 findtime = ${F2B_FIND_TIME}
 maxretry = ${F2B_MAX_RETRY}
