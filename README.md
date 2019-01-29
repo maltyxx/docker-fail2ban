@@ -12,6 +12,8 @@ If you are interested, [check out](https://hub.docker.com/r/maltyxx/) my other ð
 * `TZ` : The timezone assigned to the container (default `UTC`)
 * `F2B_LOG_LEVEL` : Log level output (default `INFO`)
 * `F2B_DB_PURGE_AGE` : Age at which bans should be purged from the database (default `1d`)
+* `F2B_BAN_TIME` : Number of seconds that a host is banned (default `10m`)
+* `F2B_FIND_TIME` : During (default `10m`)
 * `F2B_MAX_RETRY` : Number of failures before a host get banned (default `5`)
 * `F2B_DEST_EMAIL` : Destination email address used solely for the interpolations in configuration files (default `root@localhost`)
 * `F2B_SENDER` : Sender email address used solely for some actions (default `root@$(hostname -f)`)
