@@ -4,8 +4,8 @@ TZ=${TZ:-UTC}
 
 F2B_LOG_LEVEL=${F2B_LOG_LEVEL:-INFO}
 F2B_DB_PURGE_AGE=${F2B_DB_PURGE_AGE:-1d}
-F2B_MAX_BANTIME=${F2B_MAX_BANTIME:-10m}
-F2B_MAX_FINDTIME=${F2B_MAX_FINDTIME:-10m}
+F2B_BAN_TIME=${F2B_BAN_TIME:-10m}
+F2B_FIND_TIME=${F2B_FIND_TIME:-10m}
 F2B_MAX_RETRY=${F2B_MAX_RETRY:-5}
 F2B_DEST_EMAIL=${F2B_DEST_EMAIL:-root@localhost}
 F2B_SENDER=${F2B_SENDER:-root@$(hostname -f)}
@@ -56,8 +56,8 @@ EOL
 
 cat > /etc/fail2ban/jail.local <<EOL
 [DEFAULT]
-bantime = ${F2B_MAX_BANTIME}
-findtime = ${F2B_MAX_FINDTIME}
+bantime = ${F2B_BAN_TIME}
+findtime = ${F2B_FIND_TIME}
 maxretry = ${F2B_MAX_RETRY}
 destemail = ${F2B_DEST_EMAIL}
 sender = ${F2B_SENDER}
