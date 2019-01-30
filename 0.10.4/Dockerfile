@@ -1,25 +1,35 @@
-FROM alpine:3.8
+FROM docker:18.09
 
 MAINTAINER Yoann VANITOU <yvanitou@gmail.com>
 
 ARG FAIL2BAN_VERSION=0.10.4
 
-RUN apk --update --no-cache add \
-    ca-certificates curl ipset iptables ip6tables python3 python3-dev py-setuptools ssmtp tzdata wget whois \
-  && cd /tmp \
-  && curl -SsOL https://github.com/fail2ban/fail2ban/archive/${FAIL2BAN_VERSION}.zip \
-  && unzip ${FAIL2BAN_VERSION}.zip \
-  && cd fail2ban-${FAIL2BAN_VERSION} \
-  && python setup.py install \
-  && mkdir /etc/old \
-  && cp -rp /etc/fail2ban /etc/old/ \
-  && rm -rf /var/cache/apk/* /tmp/*
+RUN apk add --no-cache \
+    ca-certificates \
+    curl \
+    ipset \
+    iptables \
+    ip6tables \
+    python3 \
+    python3-dev \
+    py-setuptools \
+    ssmtp \
+    tzdata \
+    wget \
+    whois \
+  && wget -O fail2ban.tar.gz "https://github.com/fail2ban/fail2ban/archive/${FAIL2BAN_VERSION}.tar.gz" \
+  && tar --extract \
+		--file fail2ban.tar.gz \
+		--directory /tmp \
+  && python /tmp/fail2ban-${FAIL2BAN_VERSION}/setup.py install \
+  && mkdir -p /usr/local/etc/fail2ban \
+  && cp -rp /etc/fail2ban /usr/local/etc \
+  && rm -rf /tmp/fail2ban-${FAIL2BAN_VERSION} /fail2ban.tar.gz
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod a+x /entrypoint.sh
-
-RUN mkdir -v /entrypoint.d
+RUN chmod a+x /entrypoint.sh \
+  && mkdir -v /entrypoint.d
 
 VOLUME ["/etc/fail2ban", "/var/lib/fail2ban"]
 
