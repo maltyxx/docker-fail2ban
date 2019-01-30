@@ -21,7 +21,9 @@ RUN apk add --no-cache \
   && tar --extract \
 		--file fail2ban.tar.gz \
 		--directory /tmp \
-  && python /tmp/fail2ban-${FAIL2BAN_VERSION}/setup.py install \
+  && cd /tmp/fail2ban-${FAIL2BAN_VERSION} \
+  && python setup.py install \
+  && cd / \
   && mkdir -p /usr/local/etc/fail2ban \
   && cp -rp /etc/fail2ban /usr/local/etc \
   && rm -rf /tmp/fail2ban-${FAIL2BAN_VERSION} /fail2ban.tar.gz
