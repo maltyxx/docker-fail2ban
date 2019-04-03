@@ -16,6 +16,7 @@ RUN apk add --no-cache \
       tzdata \
       wget \
       whois \
+      py-curl \
     && cd /tmp \
     && wget https://github.com/fail2ban/fail2ban/archive/${FAIL2BAN_VERSION}.tar.gz -O fail2ban-${FAIL2BAN_VERSION}.tar.gz \
     && tar xvzf fail2ban-${FAIL2BAN_VERSION}.tar.gz \
