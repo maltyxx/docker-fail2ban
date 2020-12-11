@@ -1,8 +1,8 @@
-FROM docker:18.09
+FROM alpine:3
 
 LABEL maintainer="Yoann VANITOU <yvanitou@gmail.com>"
 
-ARG FAIL2BAN_VERSION=0.10.4
+ARG FAIL2BAN_VERSION=0.10.5
 
 RUN apk add --no-cache \
       ca-certificates \
@@ -21,16 +21,15 @@ RUN apk add --no-cache \
     && wget https://github.com/fail2ban/fail2ban/archive/${FAIL2BAN_VERSION}.tar.gz -O fail2ban-${FAIL2BAN_VERSION}.tar.gz \
     && tar xvzf fail2ban-${FAIL2BAN_VERSION}.tar.gz \
     && cd fail2ban-${FAIL2BAN_VERSION} \
-    && python setup.py install \
+    && python3 setup.py install \
     && cd / \
     && mkdir -p /usr/local/etc/fail2ban \
     && cp -rp /etc/fail2ban /usr/local/etc \
     && rm -rfv /tmp/*
 
-COPY entrypoint.sh /entrypoint.sh
+COPY rootfs /
 
-RUN chmod 755 -v /entrypoint.sh \
-    && mkdir -v /entrypoint.d
+RUN mkdir -v /entrypoint.d
 
 VOLUME ["/etc/fail2ban", "/var/lib/fail2ban"]
 
