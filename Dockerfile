@@ -2,7 +2,7 @@ FROM alpine:3
 
 LABEL maintainer="Yoann VANITOU <yvanitou@gmail.com>"
 
-ARG FAIL2BAN_VERSION=0.10.6
+ARG FAIL2BAN_VERSION=0.11.2
 
 RUN apk add --no-cache \
       ca-certificates \
