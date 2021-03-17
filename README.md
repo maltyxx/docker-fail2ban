@@ -5,6 +5,11 @@
 🐳 [Fail2ban](https://www.fail2ban.org) Docker image based on Alpine Linux.<br />
 If you are interested, [check out](https://hub.docker.com/r/maltyxx/) my other 🐳 Docker images!
 
+## Supported multi architectures
+
+- armv7 (arm32)
+- armv8 (arm64)
+- amd64 (x86_64)
 ## Docker
 
 ### Environment variables
